@@ -41,8 +41,8 @@ int main() {
   klee_make_symbolic(&k, sizeof(k), "k");
   klee_assume(k < 10);
 
-  // CHECK: Yes
-  // CHECK-NEXT: No
+  // CHECK: No
+  // CHECK-NEXT: Yes
   if (array[array2[array3[k]]] == 7)
     printf("Yes\n");
   else

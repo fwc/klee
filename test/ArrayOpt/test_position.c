@@ -37,8 +37,8 @@ int main() {
   klee_make_symbolic(&k, sizeof(k), "k");
   klee_assume(k < 5);
 
-  // CHECK: Yes
-  // CHECK-NEXT: No
+  // CHECK: No
+  // CHECK-NEXT: Yes
   if (array[k] == 5)
     printf("Yes\n");
   else
