@@ -21,7 +21,6 @@ int main() {
   klee_assume(k < 10);
   
   // CHECK: Yes
-  // CHECK-NEXT: No
   if (array[k] >= 1)
     printf("Yes\n");
 

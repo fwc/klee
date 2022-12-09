@@ -40,7 +40,7 @@ int main() {
 
   // CHECK: Zero
   if (array[k] == 0)
-    printf("zero\n");
+    printf("Zero\n");
 
   // CHECK: KLEE: done: completed paths = 2
 
