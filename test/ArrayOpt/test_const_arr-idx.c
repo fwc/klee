@@ -1,12 +1,15 @@
 // RUN: %clang %s -emit-llvm %O0opt -c -o %t.bc
 // RUN: rm -rf %t.klee-out
-// RUN: %klee --write-kqueries --output-dir=%t.klee-out --optimize-array=index %t.bc > %t.log 2>&1
+// RUN: %klee --write-kqueries --output-dir=%t.klee-out --optimize-array=index %t.bc > %t.out 2> %t.log
+// RUN: cat %t.out %t.log | FileCheck %s
 // RUN: not FileCheck %s -input-file=%t.log -check-prefix=CHECK-OPT_I
 // RUN: rm -rf %t.klee-out
-// RUN: %klee --write-kqueries --output-dir=%t.klee-out --optimize-array=value %t.bc > %t.log 2>&1
+// RUN: %klee --write-kqueries --output-dir=%t.klee-out --optimize-array=value %t.bc > %t.out 2> %t.log
+// RUN: cat %t.out %t.log | FileCheck %s
 // RUN: not FileCheck %s -input-file=%t.log -check-prefix=CHECK-OPT_V
 // RUN: rm -rf %t.klee-out
-// RUN: %klee --write-kqueries --output-dir=%t.klee-out --optimize-array=all %t.bc > %t.log 2>&1
+// RUN: %klee --write-kqueries --output-dir=%t.klee-out --optimize-array=all %t.bc > %t.out 2> %t.log
+// RUN: cat %t.out %t.log | FileCheck %s
 // RUN: not FileCheck %s -input-file=%t.log -check-prefix=CHECK-OPT_I
 
 // CHECK-OPT_I: KLEE: WARNING: OPT_I: successful
