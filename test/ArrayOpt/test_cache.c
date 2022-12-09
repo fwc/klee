@@ -78,7 +78,7 @@ int main() {
     printf("Yes\n");
   else if (array[k] > 4)
     printf("No\n");
-  else if (array[k] + k - 2 == 6)
+  else if (array[k] + k - 2 == 5)
     printf("Good\n");
 
   if (arraychar[x] > 126)
