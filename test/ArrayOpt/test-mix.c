@@ -13,6 +13,10 @@
 // RUN: test -f %t.klee-out/test000010.kquery
 // RUN: test -f %t.klee-out/test000011.kquery
 // RUN: test -f %t.klee-out/test000012.kquery
+// RUN: test -f %t.klee-out/test000013.kquery
+// RUN: test -f %t.klee-out/test000014.kquery
+// RUN: test -f %t.klee-out/test000015.kquery
+// RUN: test -f %t.klee-out/test000016.kquery
 // RUN: not FileCheck %s -input-file=%t.klee-out/test000001.kquery -check-prefix=CHECK-CONST_ARR
 // RUN: not FileCheck %s -input-file=%t.klee-out/test000002.kquery -check-prefix=CHECK-CONST_ARR
 // RUN: not FileCheck %s -input-file=%t.klee-out/test000003.kquery -check-prefix=CHECK-CONST_ARR
@@ -25,6 +29,10 @@
 // RUN: not FileCheck %s -input-file=%t.klee-out/test000010.kquery -check-prefix=CHECK-CONST_ARR
 // RUN: not FileCheck %s -input-file=%t.klee-out/test000011.kquery -check-prefix=CHECK-CONST_ARR
 // RUN: not FileCheck %s -input-file=%t.klee-out/test000012.kquery -check-prefix=CHECK-CONST_ARR
+// RUN: not FileCheck %s -input-file=%t.klee-out/test000013.kquery -check-prefix=CHECK-CONST_ARR
+// RUN: not FileCheck %s -input-file=%t.klee-out/test000014.kquery -check-prefix=CHECK-CONST_ARR
+// RUN: not FileCheck %s -input-file=%t.klee-out/test000015.kquery -check-prefix=CHECK-CONST_ARR
+// RUN: not FileCheck %s -input-file=%t.klee-out/test000016.kquery -check-prefix=CHECK-CONST_ARR
 // RUN: rm -rf %t.klee-out
 // RUN: %klee --write-kqueries --output-dir=%t.klee-out --optimize-array=value %t.bc 2>&1 | FileCheck %s -check-prefix=CHECK -check-prefix=CHECK-OPT_V
 // RUN: test -f %t.klee-out/test000001.kquery
@@ -39,6 +47,10 @@
 // RUN: test -f %t.klee-out/test000010.kquery
 // RUN: test -f %t.klee-out/test000011.kquery
 // RUN: test -f %t.klee-out/test000012.kquery
+// RUN: test -f %t.klee-out/test000013.kquery
+// RUN: test -f %t.klee-out/test000014.kquery
+// RUN: test -f %t.klee-out/test000015.kquery
+// RUN: test -f %t.klee-out/test000016.kquery
 // RUN: not FileCheck %s -input-file=%t.klee-out/test000001.kquery -check-prefix=CHECK-CONST_ARR
 // RUN: not FileCheck %s -input-file=%t.klee-out/test000002.kquery -check-prefix=CHECK-CONST_ARR
 // RUN: not FileCheck %s -input-file=%t.klee-out/test000003.kquery -check-prefix=CHECK-CONST_ARR
@@ -51,6 +63,10 @@
 // RUN: not FileCheck %s -input-file=%t.klee-out/test000010.kquery -check-prefix=CHECK-CONST_ARR
 // RUN: not FileCheck %s -input-file=%t.klee-out/test000011.kquery -check-prefix=CHECK-CONST_ARR
 // RUN: not FileCheck %s -input-file=%t.klee-out/test000012.kquery -check-prefix=CHECK-CONST_ARR
+// RUN: not FileCheck %s -input-file=%t.klee-out/test000013.kquery -check-prefix=CHECK-CONST_ARR
+// RUN: not FileCheck %s -input-file=%t.klee-out/test000014.kquery -check-prefix=CHECK-CONST_ARR
+// RUN: not FileCheck %s -input-file=%t.klee-out/test000015.kquery -check-prefix=CHECK-CONST_ARR
+// RUN: not FileCheck %s -input-file=%t.klee-out/test000016.kquery -check-prefix=CHECK-CONST_ARR
 // RUN: rm -rf %t.klee-out
 // RUN: %klee --write-kqueries --output-dir=%t.klee-out --optimize-array=all   %t.bc 2>&1 | FileCheck %s -check-prefix=CHECK -check-prefix=CHECK-OPT_I -check-prefix=CHECK-OPT_V
 // RUN: test -f %t.klee-out/test000001.kquery
@@ -65,6 +81,10 @@
 // RUN: test -f %t.klee-out/test000010.kquery
 // RUN: test -f %t.klee-out/test000011.kquery
 // RUN: test -f %t.klee-out/test000012.kquery
+// RUN: test -f %t.klee-out/test000013.kquery
+// RUN: test -f %t.klee-out/test000014.kquery
+// RUN: test -f %t.klee-out/test000015.kquery
+// RUN: test -f %t.klee-out/test000016.kquery
 // RUN: not FileCheck %s -input-file=%t.klee-out/test000001.kquery -check-prefix=CHECK-CONST_ARR
 // RUN: not FileCheck %s -input-file=%t.klee-out/test000002.kquery -check-prefix=CHECK-CONST_ARR
 // RUN: not FileCheck %s -input-file=%t.klee-out/test000003.kquery -check-prefix=CHECK-CONST_ARR
@@ -77,6 +97,10 @@
 // RUN: not FileCheck %s -input-file=%t.klee-out/test000010.kquery -check-prefix=CHECK-CONST_ARR
 // RUN: not FileCheck %s -input-file=%t.klee-out/test000011.kquery -check-prefix=CHECK-CONST_ARR
 // RUN: not FileCheck %s -input-file=%t.klee-out/test000012.kquery -check-prefix=CHECK-CONST_ARR
+// RUN: not FileCheck %s -input-file=%t.klee-out/test000013.kquery -check-prefix=CHECK-CONST_ARR
+// RUN: not FileCheck %s -input-file=%t.klee-out/test000014.kquery -check-prefix=CHECK-CONST_ARR
+// RUN: not FileCheck %s -input-file=%t.klee-out/test000015.kquery -check-prefix=CHECK-CONST_ARR
+// RUN: not FileCheck %s -input-file=%t.klee-out/test000016.kquery -check-prefix=CHECK-CONST_ARR
 
 // CHECK-OPT_I-DAG: KLEE: WARNING: OPT_I: successful
 // CHECK-OPT_V-DAG: KLEE: WARNING: OPT_V: successful
@@ -105,13 +129,14 @@ int main() {
 
   // CHECK-DAG: Yes
   // CHECK-DAG: No
+  // CHECK-DAG: Good
   // CHECK-DAG: Char
   // CHECK-DAG: Concrete
   if (array[k] == 3)
     printf("Yes\n");
   else if (array[k] > 4)
     printf("No\n");
-  else if (array[k] + k - 2 == 6)
+  else if (array[k] + k - 2 == 5)
     printf("Good\n");
 
   if (arraychar[x] > 2)
@@ -122,7 +147,7 @@ int main() {
     printf("Concrete\n");
   }
 
-  // CHECK-DAG: KLEE: done: completed paths = 12
+  // CHECK-DAG: KLEE: done: completed paths = 16
 
   return 0;
 }
